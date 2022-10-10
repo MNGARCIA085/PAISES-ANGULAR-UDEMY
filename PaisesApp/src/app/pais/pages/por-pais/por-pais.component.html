@@ -2,18 +2,12 @@
  
 <hr>
  
-<!-- formulario para buscar -->
-<div class="row">
-   <div class="col">
-       <form (ngSubmit)="buscar()" autcomplete="off">
-           <input type='text'
-                  name="termino"
-                  class="form-control"
-                  [(ngModel)]="termino"
-                  placeholder="Buscar por pais..."/>
-       </form>
-   </div>
-</div>
+
+<!-- escucho el evento onEnter y mando a llamar a buscar de por-pais.component-->
+<app-pais-input
+   (onEnter)="buscar( $event )">
+</app-pais-input>
+
  
  
 <hr>
@@ -29,31 +23,11 @@
  
  
 <!--mostrar los resultados-->
-<div *ngIf="paises.length > 0" class="row"> <!-- muestro la tabla solamente si encontró países-->
+<div *ngIf="paises.length > 0" class="row">
     <div class="col">
-        <table class="table table-hover">
-            <thead>
-                <td>#</td>
-                <td>Bandera</td>
-                <td>Nombre</td>
-                <td>Poblacion</td>
-                <td>#</td>
-            </thead>
-            <tbody>
-                <tr *ngFor="let pais of paises; let i = index">
-                    <td>{{i+1}}</td>
-                    <td>
-                        <img class="small-flag" [src]="pais.flags.png">
-                    </td>
-                    <td>{{pais.name.official}}</td>
-                    <td>{{pais.population | number }}</td>
-                    <td>
-                        <a [routerLink]="['/pais',pais.cca2]">Ver...</a>
-                    </td>
-                </tr>
-            </tbody>
-           
-        </table>
+  
+            <app-pais-tabla [paises]="paises"></app-pais-tabla> <!-- le paso los países al componente para que los muestre-->
     </div>
  </div>
+ 
  
