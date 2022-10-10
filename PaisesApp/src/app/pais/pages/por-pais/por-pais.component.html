@@ -5,8 +5,12 @@
 
 <!-- escucho el evento onEnter y mando a llamar a buscar de por-pais.component-->
 <app-pais-input
-   (onEnter)="buscar( $event )">
+   (onEnter)="buscar( $event )"
+   (onDebounce)="sugerencias( $event )"
+   >
+ 
 </app-pais-input>
+
 
  
  
